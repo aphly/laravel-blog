@@ -21,6 +21,8 @@ return [
             'google',
         ]
     ],
+
+    'statistics_appid'=>'2023092600946526',
     'email_appid'=>'2023080188980024',
     'email_secret'=>'nw30ZFKpOGjm3KwIoWcTSgbiRs6RXR3k',
 ];
