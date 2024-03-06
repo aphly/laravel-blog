@@ -37,7 +37,6 @@ header a:hover{color:#de8080 !important;}
                 </div>
                 <div class="header11_m">
                     <i class="common-iconfont icon-caidan logo_menu" onclick="$('.m_menu').toggle()"></i>
-                    <i class="common-iconfont icon-sousuo" onclick="$('.search_m').toggle()"></i>
                 </div>
                 <div class="header12_m">
                     <a href="/"><img src="{{ URL::asset('logo.png') }}" alt="logo"></a>
@@ -77,12 +76,7 @@ header a:hover{color:#de8080 !important;}
                         @endif
                     </ul>
                 </div>
-                <div class="search_pc">
-                    <div class="search_pc1">
-                        <input type="text" autocomplete="off" name="name" value="" placeholder="Search" class="search_pc11" maxlength="128">
-                        <button type="submit" class="search_pc12 search_btn"><i class="common-iconfont icon-sousuo"></i></button>
-                    </div>
-                </div>
+
                 <div class="d-flex header13">
                     @if($user)
                         <a href="/account/index?redirect={{urlencode(request()->url())}}"><i class="uni app-login"></i></a>
@@ -90,24 +84,6 @@ header a:hover{color:#de8080 !important;}
                         <a href="/account/index?redirect={{urlencode(request()->url())}}"><i class="uni app-touxiang"></i></a>
                     @endif
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="m_search_btn" onclick="$('.search_m').toggle()" style="display: none;">
-        <i class="common-iconfont icon-sousuo"></i>
-    </div>
-    <div class="search_m" style="display: none">
-        <div class="search_m1 container">
-            <div class="d-flex justify-content-between search_m11">
-                <div class="search_m111">Search</div>
-                <div class="search_m112" onclick="$('.search_m').toggle()"><i class="uni app-guanbi"></i></div>
-            </div>
-            <div class="search_m12">
-                <input type="text" autocomplete="off" name="name" value="" placeholder="Search" class="" maxlength="128">
-                <button type="submit" class="search_btn"><i class="common-iconfont icon-sousuo"></i></button>
-            </div>
-            <div class="search_m13">
-                <span class="label"></span>
             </div>
         </div>
     </div>

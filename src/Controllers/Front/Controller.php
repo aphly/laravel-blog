@@ -6,6 +6,7 @@ use Aphly\Laravel\Models\Comm;
 use Aphly\Laravel\Models\Config;
 use Aphly\Laravel\Models\Dict;
 use Aphly\Laravel\Models\UploadFile;
+use Aphly\LaravelBlog\Models\Links;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
@@ -14,6 +15,10 @@ class Controller extends \Aphly\Laravel\Controllers\Controller
     public $user = null;
 
     public $config = null;
+
+    public $link_id = 1;
+
+    public $comm_module = [];
 
     public function __construct()
     {
@@ -29,17 +34,17 @@ class Controller extends \Aphly\Laravel\Controllers\Controller
                 View::share("user",[]);
             }
             View::share("dict",(new Dict)->getByKey());
-
+            View::share("links",(new Links)->menu($this->link_id));
             $this->afterController();
-
             return $next($request);
         });
     }
 
     public function afterController()
     {
-        $class = (new Comm)->moduleClass();
-        foreach ($class as $val) {
+        $this->comm_module = (new Comm)->moduleClass();
+        View::share("comm_module",$this->comm_module);
+        foreach ($this->comm_module as $val) {
             if ($val!='Aphly\LaravelBlog' && $val!='Aphly\LaravelAdmin'
                 && class_exists($val.'\Controllers\Front\Controller')) {
                 $object = new ($val.'\Controllers\Front\Controller');

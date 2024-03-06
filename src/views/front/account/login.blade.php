@@ -2,7 +2,8 @@
 <link rel="stylesheet" href="{{ URL::asset('static/blog/css/account.css') }}">
 <section class="">
     <div class="container">
-        <form class="account_form form_request" id="login" data-fn="login_res" method="post" action="/account/login?redirect={{urlencode(request()->query('redirect',''))}}">
+        @if(in_array('email',config('blog.id_type')))
+        <form class="account_form form_request" data-fn="login_res" method="post" action="/account/login?redirect={{urlencode(request()->query('redirect',''))}}">
             @csrf
             <div class="accountContent">
                 <div class="text-center" style="margin-bottom: 24px;">
@@ -39,7 +40,8 @@
 
             </div>
         </form>
-        <form class="account_form form_request" id="login" data-fn="login_res" method="post" action="/account/login?redirect={{urlencode(request()->query('redirect',''))}}">
+        @elseif(in_array('mobile',config('blog.id_type')))
+        <form class="account_form form_request" data-fn="login_res" method="post" action="/account/login?redirect={{urlencode(request()->query('redirect',''))}}">
             @csrf
             <div class="accountContent">
                 <div class="text-center" style="margin-bottom: 24px;">
@@ -74,6 +76,7 @@
                 </div>
             </div>
         </form>
+        @endif
         <div class="accountContent">
             <div class="split-line ">
                 <p class="text-center">

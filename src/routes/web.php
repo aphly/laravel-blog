@@ -13,7 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::middleware(['web'])->group(function () {
+    //Home
+    Route::get('/', 'Aphly\LaravelBlog\Controllers\Front\ArticleController@index');
+
     //oauth
     Route::get('oauth/{service}','Aphly\LaravelBlog\Controllers\Front\OAuthController@redirectToProvider')->name('oauth');
     Route::get('oauth/{service}/callback','Aphly\LaravelBlog\Controllers\Front\OAuthController@handleProviderCallback')->name('oauthCallback');
@@ -21,7 +25,7 @@ Route::middleware(['web'])->group(function () {
     //Subscribe
     Route::post('subscribe/ajax', 'Aphly\LaravelBlog\Controllers\Front\SubscribeController@ajax');
 
-    //news
+    //article
     Route::match(['get'],'article/{id}', 'Aphly\LaravelBlog\Controllers\Front\ArticleController@detail')->where('id', '[0-9]+');
     Route::match(['get'],'article/index', 'Aphly\LaravelBlog\Controllers\Front\ArticleController@index');
     Route::match(['get'],'article/category', 'Aphly\LaravelBlog\Controllers\Front\ArticleController@category');
