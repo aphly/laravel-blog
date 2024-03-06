@@ -35,6 +35,8 @@ class Controller extends \Aphly\Laravel\Controllers\Controller
             }
             View::share("dict",(new Dict)->getByKey());
             View::share("links",(new Links)->menu($this->link_id));
+            $this->comm_module = (new Comm)->moduleClass();
+            View::share("comm_module",$this->comm_module);
             $this->afterController();
             return $next($request);
         });
@@ -42,8 +44,6 @@ class Controller extends \Aphly\Laravel\Controllers\Controller
 
     public function afterController()
     {
-        $this->comm_module = (new Comm)->moduleClass();
-        View::share("comm_module",$this->comm_module);
         foreach ($this->comm_module as $val) {
             if ($val!='Aphly\LaravelBlog' && $val!='Aphly\LaravelAdmin'
                 && class_exists($val.'\Controllers\Front\Controller')) {
