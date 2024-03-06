@@ -37,21 +37,17 @@ class Controller extends \Aphly\Laravel\Controllers\Controller
             View::share("links",(new Links)->menu($this->link_id));
             $this->comm_module = (new Comm)->moduleClass();
             View::share("comm_module",$this->comm_module);
-            $this->afterController();
+            foreach ($this->comm_module as $val) {
+                if ($val!='Aphly\LaravelBlog' && $val!='Aphly\LaravelAdmin'
+                    && class_exists($val.'\Controllers\Front\Controller')) {
+                    $object = new ($val.'\Controllers\Front\Controller');
+                    if (method_exists($object, 'afterController')) {
+                        $object->afterController($this);
+                    }
+                }
+            }
             return $next($request);
         });
     }
 
-    public function afterController()
-    {
-        foreach ($this->comm_module as $val) {
-            if ($val!='Aphly\LaravelBlog' && $val!='Aphly\LaravelAdmin'
-                && class_exists($val.'\Controllers\Front\Controller')) {
-                $object = new ($val.'\Controllers\Front\Controller');
-                if (method_exists($object, 'afterController')) {
-                    $object->afterController($this);
-                }
-            }
-        }
-    }
 }
