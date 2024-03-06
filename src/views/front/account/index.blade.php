@@ -1,4 +1,4 @@
-@include('laravel-blog-front::common.header')
+@Linclude('laravel-front::common.header')
 <link rel="stylesheet" href="{{ URL::asset('static/blog/css/account.css') }}">
 <section class="container">
     <style>
@@ -7,7 +7,7 @@
         .avatar i{font-size: 100px;}
     </style>
     <div class="account_info">
-        @include('laravel-blog-front::account.left_menu')
+        @Linclude('laravel-front::account.left_menu')
         <div class="account-main-section">
             <div class="top-desc d-flex justify-content-between">
                 <h2>Dashboard</h2>
@@ -75,4 +75,4 @@
         }
     }
 </script>
-@include('laravel-blog-front::common.footer')
+@Linclude('laravel-front::common.footer')

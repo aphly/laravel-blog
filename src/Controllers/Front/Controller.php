@@ -7,6 +7,7 @@ use Aphly\Laravel\Models\Config;
 use Aphly\Laravel\Models\Dict;
 use Aphly\Laravel\Models\UploadFile;
 use Aphly\LaravelBlog\Models\Links;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
@@ -35,6 +36,10 @@ class Controller extends \Aphly\Laravel\Controllers\Controller
             }
             View::share("dict",(new Dict)->getByKey());
             View::share("links",(new Links)->menu($this->link_id));
+            $paginationTemplate = $this->existView(config('base.view_namespace_front').'::common.pagination');
+            if($paginationTemplate){
+                Paginator::defaultView($paginationTemplate);
+            }
             $this->comm_module = (new Comm)->moduleClass();
             View::share("comm_module",$this->comm_module);
             foreach ($this->comm_module as $val) {

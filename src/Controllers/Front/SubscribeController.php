@@ -24,7 +24,7 @@ class SubscribeController extends Controller
             throw new ApiException(['code'=>0,'msg'=>'success']);
         }else{
             $res['title'] = 'Subscribe';
-            return $this->makeView('laravel-blog-front::account.subscribe',['res'=>$res]);
+            return $this->makeView('laravel-front::account.subscribe',['res'=>$res]);
         }
     }
 

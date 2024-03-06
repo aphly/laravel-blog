@@ -1,4 +1,4 @@
-@include('laravel-blog-front::common.header')
+@Linclude('laravel-front::common.header')
 <link rel="stylesheet" href="{{ URL::asset('static/blog/css/account.css') }}">
 <section class="pt20">
     <div class="news container">
@@ -34,7 +34,7 @@
             @endforeach
         </ul>
         <div>
-            {{$res['list']->links('laravel-blog-front::common.pagination')}}
+            {{$res['list']->links()}}
         </div>
     </div>
 </section>
@@ -49,4 +49,4 @@
 <script>
 
 </script>
-@include('laravel-blog-front::common.footer')
+@Linclude('laravel-front::common.footer')

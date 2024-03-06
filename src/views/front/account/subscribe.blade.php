@@ -1,10 +1,10 @@
-@include('laravel-blog-front::common.header')
+@Linclude('laravel-front::common.header')
 <div class="container">
     <style>
 
     </style>
     <div class="d-flex justify-content-between account_info">
-        @include('laravel-blog-front::account.left_menu')
+        @Linclude('laravel-front::account.left_menu')
         <div class="account-main-section">
             <div class="">
                 <div class="top-desc d-flex justify-content-between">
@@ -34,4 +34,4 @@
         alert_msg(res)
     }
 </script>
-@include('laravel-blog-front::common.footer')
+@Linclude('laravel-front::common.footer')

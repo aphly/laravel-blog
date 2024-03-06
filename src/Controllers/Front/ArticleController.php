@@ -15,7 +15,7 @@ class ArticleController extends Controller
         $res['search']['title'] = $request->query('title', '');
         $res['list'] = ArticleCategory::where('status',1)->get()->toArray();
         $res['list_tree'] = Helper::getTree($res['list'],true);
-        return $this->makeView('laravel-blog-front::article.category',['res'=>$res]);
+        return $this->makeView('laravel-front::article.category',['res'=>$res]);
     }
 
     function index(Request $request){
@@ -36,14 +36,14 @@ class ArticleController extends Controller
             ->orderBy('id', 'desc')
             ->Paginate(config('base.perPage'))->withQueryString();
         $res['paths'] = ArticleCategoryPath::where('article_category_id',$res['search']['category_id'])->with('category_p')->orderBy('level','asc')->get()->toArray();
-        return $this->makeView('laravel-blog-front::article.index',['res'=>$res]);
+        return $this->makeView('laravel-front::article.index',['res'=>$res]);
     }
 
     function detail(Request $request){
         $res['info'] = Article::where(['status'=>1,'id'=>$request->id])->with('category')->firstOr404();
         $res['paths'] = ArticleCategoryPath::where('article_category_id',$res['info']->article_category_id)->with('category_p')->orderBy('level','asc')->get()->toArray();
         $res['title'] = $res['info']->title;
-        return $this->makeView('laravel-blog-front::article.detail',['res'=>$res]);
+        return $this->makeView('laravel-front::article.detail',['res'=>$res]);
     }
 
 }

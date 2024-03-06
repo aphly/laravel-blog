@@ -1,4 +1,4 @@
-@include('laravel-blog-front::common.header_common')
+@Linclude('laravel-front::common.header_common')
 <link rel="stylesheet" href="{{ URL::asset('static/blog/css/iconfont.css') }}">
 <link rel="stylesheet" href="{{ URL::asset('static/blog/css/common.css') }}">
 <link rel="stylesheet" href="{{ URL::asset('static/blog/css/font.css') }}">

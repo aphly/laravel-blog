@@ -1,4 +1,4 @@
-@include('laravel-blog-front::common.header')
+@Linclude('laravel-front::common.header')
 <link rel="stylesheet" href="{{ URL::asset('static/blog/css/account.css') }}">
 
 <section class="pt20">
@@ -25,4 +25,4 @@
 </style>
 <script>
 </script>
-@include('laravel-blog-front::common.footer')
+@Linclude('laravel-front::common.footer')
