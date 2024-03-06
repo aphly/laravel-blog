@@ -88,7 +88,8 @@ class AccountController extends Controller
             }else{
                 throw new ApiException(['code'=>1,'msg'=>'Id_type Err','data'=>['code'=>['Id_type Err']]]);
             }
-            $userAuth = UserAuth::where($arr)->first();
+            $userAuthModel = UserAuth::where($arr);
+            $userAuth = $userAuthModel->first();
             if(!empty($userAuth)){
                 if($this->limiter($key,5)){
                     if(config('base.seccode_login')==1 || (config('base.seccode_login')==2 && $this->limiter($key))){
@@ -98,7 +99,7 @@ class AccountController extends Controller
                     }
                     if(Hash::check($request->input('password',''),$userAuth->password)){
                         $user = User::where(['uuid'=>$userAuth->uuid])->firstOrError();
-                        $userAuth->update(['last_time'=>time(),'last_ip'=>$request->ip(),'user_agent' => $request->header('user-agent'),'accept_language' => $request->header('accept-language')]);
+                        $userAuthModel->update(['last_time'=>time(),'last_ip'=>$request->ip(),'user_agent' => $request->header('user-agent'),'accept_language' => $request->header('accept-language')]);
                         $user->generateToken();
                         Auth::guard('user')->login($user);
                         $user->afterLogin();
@@ -231,9 +232,10 @@ class AccountController extends Controller
             $uuid = $decrypted[0]??0;
             $time = $decrypted[1]??0;
             if($uuid && $time>=time()) {
-                $userAuth = UserAuth::where(['id_type'=>'email','uuid'=>$uuid])->first();
+                $userAuthModel = UserAuth::where(['id_type'=>'email','uuid'=>$uuid]);
+                $userAuth = $userAuthModel->first();
                 if(!empty($userAuth)){
-                    $userAuth->update(['verified'=>1]);
+                    $userAuthModel->update(['verified'=>1]);
                     $res['msg'] = 'Email activation succeeded';
                 }else{
                     $res['msg'] = 'User not found';

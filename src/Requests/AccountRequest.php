@@ -19,7 +19,7 @@ class AccountRequest extends FormRequest
                     $where = ['id'=>$this->id,'id_type'=>$id_type];
                     return [
                         'id'   =>['required','email:filter',
-                            Rule::unique('user_auth')->where(function ($query) use ($where){
+                            Rule::unique('blog_user_auth')->where(function ($query) use ($where){
                                 return $query->where($where);
                             })
                         ],
@@ -30,7 +30,7 @@ class AccountRequest extends FormRequest
                     $where = ['id'=>$this->id,'id_type'=>$id_type];
                     return [
                         'id'   =>['required','regex:/^1\d{10}$/',
-                            Rule::unique('user_auth')->where(function ($query) use ($where){
+                            Rule::unique('blog_user_auth')->where(function ($query) use ($where){
                                 return $query->where($where);
                             })
                         ],
