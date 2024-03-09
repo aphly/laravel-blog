@@ -3,7 +3,7 @@
     <h5 class="nav-title">{!! $res['breadcrumb'] !!}</h5>
 </div>
 <div class="imain">
-    <form method="post" action="/user_admin/user/{{$res['info']['uuid']}}/avatar" class="save_form_file"  enctype="multipart/form-data">
+    <form method="post" action="/blog_admin/user/{{$res['info']['uuid']}}/avatar" class="save_form_file"  enctype="multipart/form-data">
         @csrf
         <div class="">
             <div class="form-group">

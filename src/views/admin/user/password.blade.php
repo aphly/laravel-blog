@@ -2,12 +2,12 @@
     <h5 class="nav-title">{!! $res['breadcrumb'] !!}</h5>
 </div>
 <div class="imain">
-    <form method="post" action="/user_admin/user/{{$res['info']['uuid']}}/password" class="save_form">
+    <form method="post" action="/blog_admin/user/{{$res['info']['uuid']}}/password" class="save_form">
         @csrf
         <div class="">
             <div class="form-group">
                 <label for="">密码</label>
-                <input type="text" name="credential" class="form-control " value="">
+                <input type="text" name="password" class="form-control " value="">
                 <div class="invalid-feedback"></div>
             </div>
             <button class="btn btn-primary" type="submit">保存</button>

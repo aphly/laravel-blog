@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public $index_url='/user_admin/user/index';
+    public $index_url='/blog_admin/user/index';
 
     private $currArr = ['name'=>'用户','key'=>'user'];
 
@@ -32,7 +32,6 @@ class UserController extends Controller
                                         $query->where('uuid', '=', $search['uuid']);
                                     }
                                 })
-                            ->with('group')
                             ->whereHas('userAuth', function (Builder $query) use ($id) {
                                 if($id){
                                     $query->where('id', 'like', '%'.$id.'%')
@@ -63,7 +62,7 @@ class UserController extends Controller
             $res['info'] = User::where('uuid',$request->uuid)->firstOrError();
             $res['breadcrumb'] = Breadcrumb::render([
                 ['name'=>$this->currArr['name'].'管理','href'=>$this->index_url],
-                ['name'=>'编辑','href'=>'/user_admin/'.$this->currArr['key'].'/'.$res['info']->uuid.'/edit']
+                ['name'=>'编辑','href'=>'/blog_admin/'.$this->currArr['key'].'/'.$res['info']->uuid.'/edit']
             ]);
             return $this->makeView('laravel-blog::admin.user.edit',['res'=>$res]);
         }
@@ -73,16 +72,13 @@ class UserController extends Controller
     {
         if($request->isMethod('post')) {
             $post = $request->all();
-            if(!empty($post['password'])){
-                (new UserAuth)->changePassword($request->uuid,$post['password']);
-                throw new ApiException(['code'=>0,'msg'=>'密码修改成功','data'=>['redirect'=>$this->index_url]]);
-            }
-            throw new ApiException(['code'=>1,'msg'=>'修改失败']);
+            (new UserAuth)->changePassword($request->uuid,$post['password']);
+            throw new ApiException(['code'=>0,'msg'=>'密码修改成功','data'=>['redirect'=>$this->index_url]]);
         }else{
             $res['info'] = User::where('uuid',$request->uuid)->firstOrError();
             $res['breadcrumb'] = Breadcrumb::render([
                 ['name'=>$this->currArr['name'].'管理','href'=>$this->index_url],
-                ['name'=>'密码','href'=>'/user_admin/'.$this->currArr['key'].'/'.$res['info']->uuid.'/password']
+                ['name'=>'密码','href'=>'/blog_admin/'.$this->currArr['key'].'/'.$res['info']->uuid.'/password']
             ]);
             return $this->makeView('laravel-blog::admin.user.password',['res'=>$res]);
         }
@@ -92,16 +88,13 @@ class UserController extends Controller
     {
         if($request->isMethod('post')) {
             $post = $request->all();
-            if(!empty($post['verify'])){
-                (new UserAuth)->changeVerify($request->uuid,$post['verify']);
-                throw new ApiException(['code'=>0,'msg'=>'修改成功','data'=>['redirect'=>$this->index_url]]);
-            }
-            throw new ApiException(['code'=>1,'msg'=>'修改失败']);
+            (new UserAuth)->changeVerify($request->uuid,$post['verified']);
+            throw new ApiException(['code'=>0,'msg'=>'修改成功','data'=>['redirect'=>$this->index_url]]);
         }else{
             $res['info'] = UserAuth::where(['uuid'=>$request->uuid,'id_type'=>'email'])->firstOrError();
             $res['breadcrumb'] = Breadcrumb::render([
                 ['name'=>$this->currArr['name'].'管理','href'=>$this->index_url],
-                ['name'=>'邮件校验','href'=>'/user_admin/'.$this->currArr['key'].'/'.$res['info']->uuid.'/verify']
+                ['name'=>'邮件校验','href'=>'/blog_admin/'.$this->currArr['key'].'/'.$res['info']->uuid.'/verify']
             ]);
             return $this->makeView('laravel-blog::admin.user.verify',['res'=>$res]);
         }
@@ -140,7 +133,7 @@ class UserController extends Controller
         }else{
             $res['breadcrumb'] = Breadcrumb::render([
                 ['name'=>$this->currArr['name'].'管理','href'=>$this->index_url],
-                ['name'=>'头像','href'=>'/user_admin/'.$this->currArr['key'].'/'.$res['info']->uuid.'/avatar']
+                ['name'=>'头像','href'=>'/blog_admin/'.$this->currArr['key'].'/'.$res['info']->uuid.'/avatar']
             ]);
             return $this->makeView('laravel-blog::admin.user.avatar',['res'=>$res]);
         }

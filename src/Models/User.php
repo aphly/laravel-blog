@@ -72,21 +72,21 @@ class User extends Authenticatable
         return $this->hasMany(UserAuth::class,'uuid');
     }
 
-    static public function groupId() {
-        $auth = Auth::guard('user');
-        if($auth->check()){
-            $user = $auth->user();
-            if($user->group_id>1){
-                if($user->group_expire<time()){
-                    $user->group_id = self::$group_id;
-                    $user->save();
-                }
-            }
-            return $user->group_id;
-        }else{
-            return 0;
-        }
-    }
+//    static public function groupId() {
+//        $auth = Auth::guard('user');
+//        if($auth->check()){
+//            $user = $auth->user();
+//            if($user->group_id>1){
+//                if($user->group_expire<time()){
+//                    $user->group_id = self::$group_id;
+//                    $user->save();
+//                }
+//            }
+//            return $user->group_id;
+//        }else{
+//            return 0;
+//        }
+//    }
 
     static function uuid(){
     	if(!self::$uuid){
@@ -101,9 +101,9 @@ class User extends Authenticatable
 		}
     }
 
-    static function initId(){
+    static function initId($id_type='email'){
         if(!self::$id){
-            $arr['id_type'] = config('blog.id_type');
+            $arr['id_type'] = $id_type;
             $arr['uuid'] = self::uuid();
             $userAuthModel = UserAuth::where($arr)->first();
             self::$id = $userAuthModel->id;

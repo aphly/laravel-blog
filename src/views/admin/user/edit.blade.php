@@ -2,7 +2,7 @@
     <h5 class="nav-title">{!! $res['breadcrumb'] !!}</h5>
 </div>
 <div class="imain">
-    <form method="post" action="/user_admin/user/{{$res['info']['uuid']}}/edit" class="save_form">
+    <form method="post" action="/blog_admin/user/{{$res['info']['uuid']}}/edit" class="save_form">
         @csrf
         <div class="">
             <div class="form-group">

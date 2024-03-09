@@ -17,9 +17,10 @@ class Controller extends \Aphly\Laravel\Controllers\Controller
 
     public $config = null;
 
-    public $link_id = 1;
-
-    public $comm_module = [];
+    static public $_G = [
+        'comm_module'=>[],
+        'link_id'=>1,
+        ];
 
     public function __construct()
     {
@@ -35,19 +36,20 @@ class Controller extends \Aphly\Laravel\Controllers\Controller
                 View::share("user",[]);
             }
             View::share("dict",(new Dict)->getByKey());
-            View::share("links",(new Links)->menu($this->link_id));
+            View::share("links",(new Links)->menu(self::$_G['link_id']));
             $paginationTemplate = $this->existView(config('base.view_namespace_front').'::common.pagination');
             if($paginationTemplate){
                 Paginator::defaultView($paginationTemplate);
             }
-            $this->comm_module = (new Comm)->moduleClass();
-            View::share("comm_module",$this->comm_module);
-            foreach ($this->comm_module as $val) {
+            self::$_G['comm_module'] = (new Comm)->moduleClass();
+            View::share("comm_module",self::$_G['comm_module']);
+            foreach (self::$_G['comm_module'] as $val) {
                 if ($val!='Aphly\LaravelBlog' && $val!='Aphly\LaravelAdmin'
                     && class_exists($val.'\Controllers\Front\Controller')) {
                     $object = new ($val.'\Controllers\Front\Controller');
                     if (method_exists($object, 'afterController')) {
                         $object->afterController($this);
+
                     }
                 }
             }

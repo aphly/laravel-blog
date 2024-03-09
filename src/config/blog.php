@@ -1,5 +1,6 @@
 <?php
 return [
+    'name'=>'xxx',
 
     //注册类型
     'id_type'=>['email'],  //email || mobile

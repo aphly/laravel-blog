@@ -7,7 +7,7 @@
 </style>
 <div class="imain">
     <div class="itop ">
-        <form method="get" action="/user_admin/user/index" class="select_form">
+        <form method="get" action="/blog_admin/user/index" class="select_form">
         <div class="search_box ">
             <input type="search" name="uuid" placeholder="uuid" value="{{$res['search']['uuid']}}">
             <input type="search" name="id" placeholder="邮箱" value="{{$res['search']['id']}}">
@@ -58,10 +58,10 @@
                             @endif
                         </li>
                         <li>
-                            <a class="badge badge-info ajax_html" data-href="/user_admin/user/{{$v['uuid']}}/edit">编辑</a>
-                            <a class="badge badge-info ajax_html" data-href="/user_admin/user/{{$v['uuid']}}/password">修改密码</a>
-                            <a class="badge badge-info ajax_html" data-href="/user_admin/user/{{$v['uuid']}}/avatar">头像</a>
-                            <a class="badge badge-info ajax_html" data-href="/user_admin/user/{{$v['uuid']}}/verify">邮件校验</a>
+                            <a class="badge badge-info ajax_html" data-href="/blog_admin/user/{{$v['uuid']}}/edit">编辑</a>
+                            <a class="badge badge-info ajax_html" data-href="/blog_admin/user/{{$v['uuid']}}/password">修改密码</a>
+                            <a class="badge badge-info ajax_html" data-href="/blog_admin/user/{{$v['uuid']}}/avatar">头像</a>
+                            <a class="badge badge-info ajax_html" data-href="/blog_admin/user/{{$v['uuid']}}/verify">邮件校验</a>
                         </li>
                     </ul>
                     <div style="margin-left: 40px;margin-bottom: 10px;">
