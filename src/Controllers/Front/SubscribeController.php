@@ -4,7 +4,7 @@ namespace Aphly\LaravelBlog\Controllers\Front;
 
 use Aphly\Laravel\Exceptions\ApiException;
 use Aphly\LaravelBlog\Models\Subscribe;
-use Aphly\LaravelBlog\Models\User;
+use Aphly\Laravel\Models\User;
 use Illuminate\Http\Request;
 
 class SubscribeController extends Controller

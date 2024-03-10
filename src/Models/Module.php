@@ -17,13 +17,6 @@ class Module extends Module_base
 
         $menu = Menu::create(['name' => 'Blog管理','route' =>'','pid'=>0,'uuid'=>$manager->uuid,'type'=>1,'module_id'=>$module_id,'sort'=>20]);
         if($menu){
-            $menu2 = Menu::create(['name' => '用户管理','route' =>'','pid'=>$menu->id,'uuid'=>$manager->uuid,'type'=>1,'module_id'=>$module_id,'sort'=>20]);
-            if($menu2){
-                $data=[];
-                $data[] =['name' => '用户','route' =>'blog_admin/user/index','pid'=>$menu2->id,'uuid'=>$manager->uuid,'type'=>2,'module_id'=>$module_id,'sort'=>0];
-                DB::table('admin_menu')->insert($data);
-            }
-            Menu::create(['name' => '导航管理','route' =>'blog_admin/links/index','pid'=>$menu->id,'uuid'=>$manager->uuid,'type'=>2,'module_id'=>$module_id,'sort'=>0]);
             $menu2 = Menu::create(['name' => '文章管理','route' =>'','pid'=>$menu->id,'uuid'=>$manager->uuid,'type'=>1,'module_id'=>$module_id,'sort'=>0]);
             if($menu2){
                 $data=[];
@@ -32,7 +25,6 @@ class Module extends Module_base
                 DB::table('admin_menu')->insert($data);
             }
             Menu::create(['name' => '订阅','route' =>'blog_admin/subscribe/index','pid'=>$menu->id,'uuid'=>$manager->uuid,'type'=>2,'module_id'=>$module_id,'sort'=>0]);
-
         }
         $menuData = Menu::where(['module_id'=>$module_id])->get();
         $data=[];

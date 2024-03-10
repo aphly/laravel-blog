@@ -1,5 +1,5 @@
 @Linclude('laravel-front::common.header')
-<link rel="stylesheet" href="{{ URL::asset('static/blog/css/account.css') }}">
+<link rel="stylesheet" href="{{ URL::asset('static/base/front/css/account.css') }}">
 <section class="pt20">
     <div class="news container">
         <ul>

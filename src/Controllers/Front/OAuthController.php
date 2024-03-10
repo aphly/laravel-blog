@@ -4,8 +4,8 @@ namespace Aphly\LaravelBlog\Controllers\Front;
 
 use Aphly\Laravel\Exceptions\ApiException;
 use Aphly\Laravel\Libs\Helper;
-use Aphly\LaravelBlog\Models\User;
-use Aphly\LaravelBlog\Models\UserAuth;
+use Aphly\Laravel\Models\User;
+use Aphly\Laravel\Models\UserAuth;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
