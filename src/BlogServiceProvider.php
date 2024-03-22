@@ -28,7 +28,7 @@ class BlogServiceProvider extends ServiceProvider
         if(in_array('Aphly\LaravelBlog',$comm_module)) {
             //$this->loadMigrationsFrom(__DIR__.'/migrations');
             $this->loadViewsFrom(__DIR__ . '/views', 'laravel-blog');
-            $this->loadViewsFrom(__DIR__ . '/views/front', config('base.view_namespace_front'));
+            $this->loadViewsFrom(__DIR__ . '/views/front', 'laravel-front');
             $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
         }
     }

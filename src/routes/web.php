@@ -26,9 +26,6 @@ Route::middleware(['web'])->group(function () {
     Route::match(['get'],'article/index', 'Aphly\LaravelBlog\Controllers\Front\ArticleController@index');
     Route::match(['get'],'article/category', 'Aphly\LaravelBlog\Controllers\Front\ArticleController@category');
 
-    //404
-    Route::get('404', 'Aphly\LaravelBlog\Controllers\Front\NotfoundController@index');
-
     Route::prefix('account')->group(function () {
         Route::middleware(['userAuth'])->group(function () {
             Route::match(['get', 'post'],'subscribe', 'Aphly\LaravelBlog\Controllers\Front\SubscribeController@index');

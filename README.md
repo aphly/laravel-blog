@@ -1,7 +1,5 @@
 **laravel Blog**<br>
 
-包含 user <br>
-
 环境<br>
 php8.1+<br>
 laravel10.0+<br>
